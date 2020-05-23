@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Ross' Algo Prep</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/index.html">Ross' Algo Prep</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Data Structures</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/content/data_structures/arrays_and_strings.html">Arrays and Strings</a>
+            <a class="dropdown-item" href="/content/data_structures/arrays_and_strings.html">Linked Lists</a>
+            <a class="dropdown-item" href="/content/data_structures/stacks_and_queues.html">Stacks and Queues</a>
+            <a class="dropdown-item" href="/content/data_structures/trees_and_graphs.html">Trees and Graphs</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/content/data_structures/data_structures.html">Data Structures</a>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Concepts and Algorithms</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/bit_manipulation.html">Bit Manipulation</a>
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/concepts_and_algorithms.html">Magic and
+              Logic Puzzles</a>
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/object-oriented_design.html">Object Oriented
+              Design</a>
+            <a class="dropdown-item"
+              href="/content/concepts_and_algorithms/recursion_and_dynamic_programming.html">Recursion and Dynamic
+              Programming</a>
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/system_design_and_scalability.html">System
+              Design and Scalability</a>
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/sorting_and_searching.html">Sorting and
+              Searching</a>
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/testing.html">Testing</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/content/concepts_and_algorithms/concepts_and_algorithms.html">Concepts and
+              Algorithms</a>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/content/knowledge_based/knowledge_based.html" id="navbarDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Based</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/content/knowledge_based/c_and_c++.html">C and C++</a>
+            <a class="dropdown-item" href="/content/knowledge_based/java.html">Java</a>
+            <a class="dropdown-item" href="/content/knowledge_based/databases.html">Databases</a>
+            <a class="dropdown-item" href="/content/knowledge_based/threads_and_locks.html">Threads and Locks</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/content/knowledge_based/knowledge_based.html">Knowledge Based</a>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/content/knowledge_based/knowledge_based.html" id="navbarDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Additional Review
+            Problems</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/content/additional_review_problems/moderate.html">Moderate</a>
+            <a class="dropdown-item" href="/content/additional_review_problems/">Hard</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/content/additional_review_problems/additional_review_problems.html">Additional Review Problems</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron p-3 m-3 text-center">
+    <h1 class="display-4"><strong>Data Structures</strong></h1>
+    <hr class="my-4">
+    <div class="container-fluid d-flex flex-wrap justify-content-center text-center">
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Arrays and Strings</h5>
+          <p class="card-text">This section deals with arrays and strings, which can often be treated the same way.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Linked List</h5>
+          <p class="card-text">Linked lists, which must be traversed whether forwards or
+            backwards.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Stacks and Queues</h5>
+          <p class="card-text">This section deals with stacks and queues, which deals with pushing and popping elements.
+          </p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Trees and Graphs</h5>
+          <p class="card-text">Trees and graphs are like linked lists in that they must
+            be traversed, but diverge out in an array.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron p-3 m-3 text-center">
+    <h1 class="display-4"><strong>Concepts and Algorithms</strong></h1>
+    <hr class="my-4">
+    <div class="container-fluid d-flex flex-wrap justify-content-center">
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Bit Manipulation</h5>
+          <p class="card-text">Bit manipulation is used for low level maniputlation for fast computation and handling
+            encryption and compression.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Math and Logic Puzzles</h5>
+          <p class="card-text">Logic puzzels usually associated with mathematics and computer science.
+            It's a broad subject not necessarily linked to computing.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Object-Oriented Design</h5>
+          <p class="card-text">OOD deals with creating classes of objects, instantiating them, and
+            calling their elements and functions.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Recursion and Dynamic Programming</h5>
+          <p class="card-text">Recursion deals with programming a function which calls itself in it's operation, down to
+            some key paramter or to exhaustion.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">System Design and Scalability</h5>
+          <p class="card-text">Scalability is an issue in that what may seem appropriate behaviour at a small scale my
+            create problems on mass scale, either introducing errors or failing to keep up with demand.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Sorting and Searching</h5>
+          <p class="card-text">This is a bread and butter issue, where when dealing with guargantuan data, small
+            adjustments in efficiency can yield tremendous gains in speed and costs.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Testing</h5>
+          <p class="card-text">Testing is critical not just to ensure proper operation according to expectations, but
+            can also save a tremendous amount of time in development by automating testing.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron p-3 m-3 text-center">
+    <h1 class="display-4"><strong>Knowledge Based</strong></h1>
+    <hr class="my-4">
+    <div class="container-fluid d-flex flex-wrap justify-content-center">
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">C and C++</h5>
+          <p class="card-text">C is a low level language, while C++ is a fully fledged Object Oriented language built
+            out on top of it. This can have advantages in that it retains original low level C capabilities.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Java</h5>
+          <p class="card-text">Java has a massive market share and powers all kinds of devices. While it is good to
+            learn on because of its many guardrails, it can frustrate the more expereinced developer for the same
+            reason.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Databases</h5>
+          <p class="card-text">Databases store information according to logical rules and structures to easily allow
+            creating, reading, updating, and deletion of records within a large data repsoitory.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Threads and Locks</h5>
+          <p class="card-text">Threads are simultaneous processes, which often requires 'locks' which prevent multiple
+            processes from accessing critical code or data at the same time.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron p-3 m-3 text-center">
+    <h1 class="display-4"><strong>Additional Review Problems</strong></h1>
+    <hr class="my-4">
+    <div class="container-fluid d-flex flex-wrap justify-content-center">
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Moderate</h5>
+          <p class="card-text">Random questions of various topics, just harder.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Hard</h5>
+          <p class="card-text">Random questions of various topics, just <em>much</em> harder.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="/utilities/javascript/menu.js"></script>
+
+</html>
