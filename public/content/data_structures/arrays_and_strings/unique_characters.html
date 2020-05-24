@@ -23,17 +23,61 @@
   <div id='nav'></div>
 
   <div class="jumbotron p-3 m-3 text-center">
-    <h1 class="display-4"><strong>Arrays & Strings</strong></h1>
+    <h1 class="display-4">Data Structures:</h1>
+    <h1 class="display-3">Arrays and Strings:</h1>
+    <h1 class="display-2"><strong>Unique Characters</strong></h1>
     <hr class="my-4">
     <div class="container-fluid d-flex flex-wrap justify-content-center text-center">
-      <div class="card shadow p-3 m-3 bg-white rounded" style="max-width: 18rem;">
+
+      <div class="card shadow p-3 m-3 bg-white rounded">
         <div class="card-body">
-          <h5 class="card-title">Unique Characters</h5>
           <p class="card-text">Implement an algorithm to determine if a string has all unique characters. What if you
             cannot use additional data structures?</p>
-          <a href="#" class="btn btn-primary stretched-link">Go to Questions</a>
+          <a class="btn btn-primary" data-toggle="collapse" href="#hints" role="button" aria-expanded="false"
+            aria-controls="hints">See Hints</a>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#solution"
+            aria-expanded="false" aria-controls="solution">See Solutions</button>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse"
+            aria-expanded="false">See Both</button>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+
+          <div class="collapse multi-collapse" id="hints">
+            <div class="card shadow p-3 m-3 mb-4 bg-white rounded">
+              <div class="card-body">
+                <h2 class="card-title">Hints</h2>
+                <hr class="my-4">This is a relatively straightforward question. There are a couple factors to condider
+                to arrive at an optimal solution.<br><br>First thing you need to know, is how many characters you need to
+                handle. Assuming it's a string of english words, you can assume ASCII's 128 characters or Unicode's 256
+                characters. In this 'fixed character count' case, an array is ideal.<br><br>If number of characters is unknown
+                or requires to consider the over a million possible characters in Unicode, a scaling data structure like
+                a hash map might be more appropriate. It is also necessary to consider whether we are just flagging or
+                counting, that is, whether we are counting the occrrences of characters or the number of unique
+                characters in a string, period.<br><br>In the former case you require a data structure of only booleans, and in
+                the latter case you would require ints at least, which will require more space to store as the algorithm
+                runs.
+              </div>
+            </div>
+
+            <div class="collapse multi-collapse" id="solution">
+              <div class="card shadow p-3 m-3 bg-white rounded">
+                <div class="card-body">
+                  <h5 class="card-title">Solution</h5>
+                  <hr class="my-4">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                  ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                  proident.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
 </body>
 
