@@ -61,7 +61,7 @@ let menu = `
         Problems</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="/content/additional_review_problems/moderate.html">Moderate</a>
-        <a class="dropdown-item" href="/content/additional_review_problems/">Hard</a>
+        <a class="dropdown-item" href="/content/additional_review_problems/hard.html">Hard</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="/content/additional_review_problems/additional_review_problems.html">Additional Review Problems</a>
       </div>
