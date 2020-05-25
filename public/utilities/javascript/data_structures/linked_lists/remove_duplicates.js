@@ -23,6 +23,19 @@ class LinkedList {
             current.next = newNode;
         }
     }
+
+    // a standard to string method for my demo
+    toString() {
+        let return_string = "";
+        if (this.head) {
+            let current = this.head;
+            while (current) {
+                return_string += "element " + current.data + " data\n"
+                current = current.next;
+            }
+            return return_string;
+        }
+    }
 }
 
 function populateList() {
@@ -37,6 +50,7 @@ function populateList() {
 }
 
 function printList(list) {
+
     if (!list.head) {
     } else {
         let current = list.head;
@@ -58,9 +72,9 @@ function removeDuplicates1(testList) {
         if (previous.data == current.data) {
             previous.next = null;
 
-        // otherwise create a set
-        // check if each value in list exists in set
-        // add to set if it does not, otherwise continue
+            // otherwise create a set
+            // check if each value in list exists in set
+            // add to set if it does not, otherwise continue
         } else {
             let testSet = new Set();
             testSet.add(previous.data)
@@ -105,19 +119,33 @@ function removeDuplicates2(testList) {
     }
 }
 
-function listTest() {
-    console.log("first algo:");
-    let newList1 = populateList();
-    printList(newList1);
-    removeDuplicates1(newList1);
-    console.log("NEW PRINTOUT")
-    printList(newList1)
-    console.log("second algo:");
-    let newList2 = populateList();
-    printList(newList2);
-    removeDuplicates2(newList2);
-    console.log("NEW PRINTOUT")
-    printList(newList2)
+let demo_list_one;
+let demo_list_two;
+
+function demoOneGenerate() {
+    let target_div = document.getElementById('test1_output');
+    demo_list_one = populateList();
+    let generated_text = demo_list_one.toString();
+    target_div.innerText = generated_text;
 }
 
-listTest();
+function demoOneFilter() {
+    let target_div = document.getElementById('test1_output');
+    removeDuplicates1(demo_list_one);
+    let generated_text = demo_list_one.toString();
+    target_div.innerText = generated_text;
+}
+
+function demoTwoGenerate() {
+    let target_div = document.getElementById('test2_output');
+    demo_list_two = populateList();
+    let generated_text = demo_list_two.toString();
+    target_div.innerText = generated_text;
+}
+
+function demoTwoFilter() {
+    let target_div = document.getElementById('test2_output');
+    removeDuplicates1(demo_list_two);
+    let generated_text = demo_list_two.toString();
+    target_div.innerText = generated_text;
+}
