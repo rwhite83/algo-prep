@@ -18,7 +18,7 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="tab-size: 8">
 
   <div id='nav'></div>
 
@@ -37,8 +37,6 @@
             aria-controls="hints">See Hints</a>
           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#solution"
             aria-expanded="false" aria-controls="solution">See Solutions</button>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse"
-            aria-expanded="false">See Both</button>
         </div>
       </div>
 
@@ -49,38 +47,124 @@
             <div class="card shadow p-3 m-3 mb-4 bg-white rounded">
               <div class="card-body">
                 <h2 class="card-title">Hints</h2>
-                <hr class="my-4">This is a relatively straightforward question. There are a couple factors to condider
-                to arrive at an optimal solution.<br><br>First thing you need to know, is how many characters you need to
-                handle. Assuming it's a string of english words, you can assume ASCII's 128 characters or Unicode's 256
-                characters. In this 'fixed character count' case, an array is ideal.<br><br>If number of characters is unknown
-                or requires to consider the over a million possible characters in Unicode, a scaling data structure like
-                a hash map might be more appropriate. It is also necessary to consider whether we are just flagging or
-                counting, that is, whether we are counting the occrrences of characters or the number of unique
-                characters in a string, period.<br><br>In the former case you require a data structure of only booleans, and in
-                the latter case you would require ints at least, which will require more space to store as the algorithm
-                runs.
+                <hr class="my-4">
+                <p class="card-text">This is a relatively straightforward question. There are a couple factors to
+                  condider to arrive at an optimal solution.</p>
+                <p class="card-text">First thing you need to know, is how many characters you need to handle. Assuming
+                  it's a string of english words, and you only need to count case insensitive letters, you could limit
+                  yourself to an array of twenty-six. If you need to store full ASCII, which is stored in seven bits,
+                  you need a 127 element array. However, to capture all of Unicode, which has the potential to have over
+                  a million unique characters, an array quickly becomes too big, and there is too much front loading
+                  when the algorithm is run.</p>
+                <p class="card-text">In this case, something like a hashmap which starts small and doubles in size when
+                  necessary, and itself handles where to store your keys and values, might be more appropriate. However,
+                  since in this case we are not even requiring keys and values, we can simplify things a bit by just
+                  using a set instead.</p>
+                <p class="card-text">It is also necessary to consider whether we are just flagging or counting, that is,
+                  whether we are counting the occrrences of characters or the number of unique characters in a string,
+                  period. Inthe former case you require a data structure of only booleans, and in the latter case you
+                  would require ints at least.</p>
+                <p class="card-text"><em>For further consideration...</em><br>If space was paramount, there are more
+                  space conservative ways to store booleans such as a 'bit array', but this is a data structure not
+                  supported by all languages, and for this example, overkill.</p>
               </div>
-            </div>
-
-            <div class="collapse multi-collapse" id="solution">
-              <div class="card shadow p-3 m-3 bg-white rounded">
-                <div class="card-body">
-                  <h5 class="card-title">Solution</h5>
-                  <hr class="my-4">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-                  ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                  proident.
-                </div>
-              </div>
-
             </div>
           </div>
 
+
+          <div class="collapse multi-collapse" id="solution">
+            <div class="card shadow p-3 m-3 bg-white rounded">
+              <div class="card-body">
+                <h2 class="card-title">Solutions</h2>
+                <p class="card-text">There are two primary categories of this solution.</p>
+                <hr class="my-4">
+
+                <p class="card-text">First is the limited ASCII 128 character set in which an array of booleans is used.
+                </p>
+                <div class="text-left p-3 bg-dark">
+                  <p class="card-text">
+                    <code class="text-light">function uniqueCharacters1(testString) {
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// if the string is more than 128 characters, they cannot all be unique
+                      <br>&emsp;&emsp;&emsp;&emsp;if (testString.length > 128) {
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return false;
+                        <br>&emsp;&emsp;&emsp;&emsp;}
+                        <br><br>&emsp;&emsp;&emsp;&emsp;// create an array and fill it with boolean false
+                        <br>&emsp;&emsp;&emsp;&emsp;let testArray = new Array(128).fill(false);
+                        <br><br>&emsp;&emsp;&emsp;&emsp;// iterate through the test string
+                        <br>&emsp;&emsp;&emsp;&emsp;// if true found, return false, otherwise change array boolean and continue
+                        <br>&emsp;&emsp;&emsp;&emsp;for (i = 0; i < testString.length; i++) {
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let val = testString.charAt(i)
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if(testArray[val]) {
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return false;
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;} else {
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;testArray[val] = true;
+                        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                        <br>&emsp;&emsp;&emsp;&emsp;}
+                        <br>&emsp;&emsp;&emsp;&emsp;return true;
+                        <br>}
+                    </code>
+                  </p>
+                </div>
+                <div class="form-inline justify-content-center pt-4" id="unique_characters_form_1">
+                  <div class="form-group mx-sm-3 m-2">
+                    <input type="text" class="form-control" id="test1_input" placeholder="Try a string here">
+                  </div>
+                  <button onClick="uniqueCharacters1Test()" class="btn btn-primary m-2">Check if Unique
+                    Characters</button>
+                  <div class="form-group m-2">
+                    <p class="card-text" id="test1_output">T/F</p>
+                  </div>
+                  </form>
+                </div>
+                <hr class="my-4">
+
+                <p class="card-text">The second, more versatile approach is to use something which grows so you don't
+                  have to worry about space, and which does fast direct access. In this case I am using a set, which has
+                  a more robust data structure underneath it.</p>
+                <div class="p-3 text-left bg-dark">
+                  <p class="card-text">
+                    <code class="text-light">function uniqueCharacters2(testString) {
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// create set
+                      <br>&emsp;&emsp;&emsp;&emsp;let testSet = new Set();
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// iterate through test string
+                      <br>&emsp;&emsp;&emsp;&emsp;// check if value exists, return false if so, otherwise continue
+                      <br>&emsp;&emsp;&emsp;&emsp;for (i = 0; i < testString.length; i++) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if(!testSet.has(testString.charAt(i))) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;testSet.add(testString.charAt(i))
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;} else {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return false;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br>&emsp;&emsp;&emsp;&emsp;return true;
+                      <br>}
+                    </code>
+                  </p>
+                </div>
+                <div class="form-inline justify-content-center pt-4" id="unique_characters_form_2">
+                  <div class="form-group mx-sm-3 m-2">
+                    <input type="text" class="form-control" id="test2_input" placeholder="Try a string here">
+                  </div>
+                  <button onClick="uniqueCharacters2Test()" class="btn btn-primary m-2">Check if Unique
+                    Characters</button>
+                  <div class="form-group m-2">
+                    <p class="card-text" id="test2_output">T/F</p>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+  </div>
+  </div>
+
+
 </body>
 
 <script src="/utilities/javascript/menu.js"></script>
+<script src="/utilities/javascript/data_structures/arrays_and_strings/unique_characters.js"></script>
 
 </html>
