@@ -14,7 +14,7 @@ let menu = `
         aria-haspopup="true" aria-expanded="false">Data Structures</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="/content/data_structures/arrays_and_strings.html">Arrays and Strings</a>
-        <a class="dropdown-item" href="/content/data_structures/arrays_and_strings.html">Linked Lists</a>
+        <a class="dropdown-item" href="/content/data_structures/linked_list.html">Linked Lists</a>
         <a class="dropdown-item" href="/content/data_structures/stacks_and_queues.html">Stacks and Queues</a>
         <a class="dropdown-item" href="/content/data_structures/trees_and_graphs.html">Trees and Graphs</a>
         <div class="dropdown-divider"></div>
@@ -61,9 +61,10 @@ let menu = `
         Problems</a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="/content/additional_review_problems/moderate.html">Moderate</a>
-        <a class="dropdown-item" href="/content/additional_review_problems/hard.html">Hard</a>
+        <a class="dropdown-item" href="/content/additional_review_problems/">Hard</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/content/additional_review_problems/additional_review_problems.html">Additional Review Problems</a>
+        <a class="dropdown-item"
+          href="/content/additional_review_problems/additional_review_problems.html">Additional Review Problems</a>
       </div>
     </div>
   </div>

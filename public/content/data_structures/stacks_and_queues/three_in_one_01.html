@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Ross' Algo Prep</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div id='nav'></div>
+
+  <div class="jumbotron p-3 m-3 text-center">
+    <h1 class="display-4">Data Structures:</h1>
+    <h1 class="display-3">Stacks and Queues:</h1>
+    <h1 class="display-2"><strong>Three in One 01</strong></h1>
+    <hr class="my-4">
+    <div class="container-fluid d-flex flex-wrap justify-content-center text-center">
+
+      <div class="card shadow p-3 m-3 bg-white rounded">
+        <div class="card-body">
+          <p class="card-text">Describe how you could use a single array to implement 3 stacks. Fixed array size
+            solution only.</p>
+          <a class="btn btn-primary" data-toggle="collapse" href="#hints" role="button" aria-expanded="false"
+            aria-controls="hints">See Hints</a>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#solution"
+            aria-expanded="false" aria-controls="solution">See Solutions</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+
+          <div class="collapse multi-collapse" id="hints">
+            <div class="card shadow p-3 m-3 mb-4 bg-white rounded">
+              <div class="card-body">
+                <h2 class="card-title">Hints</h2>
+                <hr class="my-4">
+                <p class="card-text">This is not a straightforward question. It is also challenging in that for this
+                  question you are asked to do a lot at once. The author of the question even says in the book, that the
+                  second part of the question which you can see <a
+                    href="/content/data_structures/stacks_and_queues/three_in_one_02.html">here</a> is much more
+                  complicated than anything likely to be asked in a technical interview, and that the purpose is to
+                  understand the various individual parts, which one may very well be asked to do.</p>
+                <p class="card-text">So, this is not a question I was able to come up with a worked out possible
+                  solution before looking at the hints and answers. I had two ideas, the first was something like the
+                  suggested solution, a single array divided up, but I was unsure how to expand and contract a fixed
+                  array (required in stricter languages than java), but once I looked up the solution, an offset was the
+                  obvious solution, something I dealt with in OS class in school for navigating a FAT file system. I
+                  also had the idea of having a stack of nodes like a linked list, where each node had three data
+                  properties, one for each stack, but quickly realized why this couldn't work (stacks are not traversed,
+                  elements are entirely pushed and popped).</p>
+                <p class="card-text"><em>What I learned...</em><br>I've done a lot of javascript, but I've never had to
+                  work with classes in JavaScript so I was missing some basic stuff. Doing this for example, I had to
+                  ask: 'How do you declare class variables in JavaScript, it won't let me just declare them above the
+                  constructor.' I learned that you just declare them in the constructor. In this, I also learned the
+                  technique of declaring variables in the constructor, and then declaring a secondary constructor
+                  function in which actual work needing to be done on instantiation can go, which helps to seperate
+                  concerns. I didn't need that in this case, but it's a good thing to remember.</p>
+                <p class="card-text">I also learned a bit more about working with arrays in JavaScript. I came across a
+                  bug where I though I was creating an array of 3 values, but was instead creating an array with a
+                  single element with value 3. I instead had to write 'new Array(3); I happily won't make that mistake
+                  again. I also got to use array.fill(0) again, which I like for some inexplicable reason.</p>
+                <p class="card-text"><em>For further consideration...</em><br>I suggest you check out the second part of
+                  this question <a href="/content/data_structures/stacks_and_queues/three_in_one_02.html">here</a> as
+                  the more discrete minutie of this question will be addressed.</p>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse multi-collapse" id="solution">
+            <div class="card shadow p-3 m-3 bg-white rounded">
+              <div class="card-body">
+                <h2 class="card-title">Solutions</h2>
+                <p class="card-text">The challenge in this case was understanding and translating the provided Java code
+                  into workable JavaScript.</p>
+                <hr class="my-4">
+
+                <p class="card-text">This is the solution in full.</p>
+                <div class="text-left p-3 bg-dark">
+                  <p class="card-text">
+                    <code class="text-light">class FixedMultiStack {
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// constructor used to declare and set class variables
+                      <br>&emsp;&emsp;&emsp;&emsp;constructor(stackSize) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.numberOfStacks = 3;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.stackCapacity = stackSize;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values = [stackSize * this.numberOfStacks];
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.sizes = new Array(this.numberOfStacks).fill(0);
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// check if full
+                      <br>&emsp;&emsp;&emsp;&emsp;// otherwise push onto appropriate stack
+                      <br>&emsp;&emsp;&emsp;&emsp;// offsets to designated stack
+                      <br>&emsp;&emsp;&emsp;&emsp;push(stackNum, value) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (this.isFull(stackNum)) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;console.error("The stack is full and a push was attempted.");
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;} else {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.sizes[stackNum]++;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values[this.indexOfTop(stackNum)] = value;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// check if empty
+                      <br>&emsp;&emsp;&emsp;&emsp;// otherwise pop from appropriate stack
+                      <br>&emsp;&emsp;&emsp;&emsp;// offsets to designated stack
+                      <br>&emsp;&emsp;&emsp;&emsp;// sets value on stack to zero
+                      <br>&emsp;&emsp;&emsp;&emsp;// decrements stack's 'top index'
+                      <br>&emsp;&emsp;&emsp;&emsp;// returns value
+                      <br>&emsp;&emsp;&emsp;&emsp;pop(stackNum) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (this.isEmpty(stackNum)) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;console.error("The stack is empty and a pop was attempted");
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;} else {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let topIndex = this.indexOfTop(stackNum);
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let value = this.values[topIndex]
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values[topIndex] = 0;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.sizes[stackNum]--;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return value;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// check if empty
+                      <br>&emsp;&emsp;&emsp;&emsp;// otherwise return value from appropriate stack
+                      <br>&emsp;&emsp;&emsp;&emsp;peek(stackNum) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (this.isEmpty(stackNum)) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;console.error("The stack is empty and a peek was attempted");
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;} else {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.values[this.indexOfTop(stackNum)]
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// checks if designated stack is empty
+                      <br>&emsp;&emsp;&emsp;&emsp;isEmpty(stackNum) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.sizes[stackNum] == 0;
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// checks if designated stack is full
+                      <br>&emsp;&emsp;&emsp;&emsp;isFull(stackNum) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.sizes[stackNum] == this.stackCapacity;
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                      <br><br>&emsp;&emsp;&emsp;&emsp;// processes offset to top of specified stack
+                      <br>&emsp;&emsp;&emsp;&emsp;// returns the offset
+                      <br>&emsp;&emsp;&emsp;&emsp;indexOfTop(stackNum) {
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let offset = stackNum * this.stackCapacity;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let size = this.sizes[stackNum];
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return offset + size - 1;
+                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                      <br>&emsp;&emsp;&emsp;&emsp;}
+                    </code>
+                  </p>
+                </div>
+                <p class="card-text">First is the constructor with class variables, then the push function, then pop and
+                  peek, as well as required helper functions.</p>
+
+                <div class="form-inline justify-content-center pt-4">
+                  <button onClick="stackSizeSelector()" class="btn btn-primary m-2">Create a Stack</button>
+                </div>
+                <div class="form-inline justify-content-center pt-4">
+                  <button onClick="pushStackZero()" class="btn btn-primary m-2">Push Stack Zero</button>
+                  <button onClick="pushStackOne()" class="btn btn-primary m-2">Push Stack One</button>
+                  <button onClick="pushStackTwo()" class="btn btn-primary m-2">Push Stack Two</button>
+                </div>
+                <div class="form-inline justify-content-center pt-4">
+                  <button onClick="popStackZero()" class="btn btn-primary m-2">Pop Stack Zero</button>
+                  <button onClick="popStackOne()" class="btn btn-primary m-2">Pop Stack One</button>
+                  <button onClick="popStackTwo()" class="btn btn-primary m-2">Pop Stack Two</button>
+                </div>
+                <div class="form-inline justify-content-center pt-4">
+                  <button onClick="peekStackZero()" class="btn btn-primary m-2">Peek Stack Zero</button>
+                  <button onClick="peekStackOne()" class="btn btn-primary m-2">Peek Stack One</button>
+                  <button onClick="peekStackTwo()" class="btn btn-primary m-2">Peek Stack Two</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/utilities/javascript/menu.js"></script>
+  <script src="/utilities/javascript/data_structures/stacks_and_queues.js/three_in_one_01.js"></script>
+
+</html>

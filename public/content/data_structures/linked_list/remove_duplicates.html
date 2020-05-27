@@ -18,7 +18,7 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body style="tab-size: 8">
+<body>
 
   <div id='nav'></div>
 
@@ -48,26 +48,26 @@
               <div class="card-body">
                 <h2 class="card-title">Hints</h2>
                 <hr class="my-4">
-                <p class="card-text">This is a relatively straightforward question. There are a couple factors to
-                  condider to arrive at an optimal solution.</p>
+                <p class="card-text">This is a relatively straightforward question. There are a couple of factors to
+                  consider to arrive at an optimal solution.</p>
                 <p class="card-text">First, the reason for the follow up about not allowing a temporary buffer, is to
                   force consideration of a 'runner' technique, using one primary iterator, and a second to sample the
                   remaining nodes after the primary's location at any given time.</p>
                 <p class="card-text">For some reason, I have now jumped on sets and hash structures as my go to when in
-                  doubt, but I also considered some sort of double iteration but dismissed this as a last resort to
+                  doubt, but I also considered some sort of double iteration, but dismissed this as a last resort to
                   consider more practical solutions. I later came around to realize that the double iteration in this
                   case would mean the 'runner' technique, which just means using a second pointer to iterate through the
                   linked list in a different way.</p>
-                <p class="card-text">Another consideration is whether or not you have existing Node structures or if you
-                  have to build them. Languages like Java and C++ have native Linked List data structures, but for
-                  languages like JavaScript used here, the structures and functions of nodes and Linked Lists must be
-                  crafted ourselves. Fortuanately, this is not too difficult.</p>
+                <p class="card-text">Another consideration is whether or not you have existing node structures in the
+                  language you are using, or if you have to build them yourself. Languages like Java and C++ have native
+                  Linked List data structures, but for languages like JavaScript used here, the structures and functions
+                  of nodes and Linked Lists must be crafted ourselves. Fortuanately, this is not too difficult.</p>
                 <p class="card-text"><em>For further consideration...</em><br><br>Another differentiation between the
                   two approaches will be as usual, space vs time. The set approach will be fast, but require more space.
                   The 'runner' method will not use that extra space, but will take O(N<sup>2</sup>) instead of O(N)
                   becuase of the double iteration.</p>
                 <p class="card-text">Also, utility is important to consider here. As currently constructed, it would be
-                  hard to put these functions to use. THey would need to be wrapped up in a service for specific and
+                  hard to put these functions to use. They would need to be wrapped up in a service for specific and
                   properly formatted access such as an API.</p>
               </div>
             </div>
@@ -80,8 +80,9 @@
                 <p class="card-text">There are two primary categories of this solution.</p>
                 <hr class="my-4">
 
-                <p class="card-text">First I will show the supporting code I needed to write to make the required
-                  functions to work:</p>
+                <p class="card-text">First I will show the supporting code I needed to write in order to make the
+                  required
+                  functions work:</p>
                 <div class="text-left p-3 bg-dark">
                   <p class="card-text">
                     <code class="text-light">class Node {
@@ -128,7 +129,7 @@
                     </code>
                   </p>
                 </div>
-                <p class="card-text">Above is a LinkedList class with a constructor add node and to string functions.
+                <p class="card-text">Above is a LinkedList class with constructor, add node, and to string functions.
                 </p>
 
                 <div class="text-left p-3 bg-dark">
@@ -148,27 +149,11 @@
                   </p>
                 </div>
                 <p class="card-text">This is a function used for testing, it populates a list with duplicates.</p>
-
-                <div class="text-left p-3 bg-dark">
-                  <p class="card-text">
-                    <code class="text-light">function printList(list) {
-                      <br>&emsp;&emsp;&emsp;&emsp;if (!list.head) {
-                      <br>&emsp;&emsp;&emsp;&emsp;} else {
-                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let current = list.head;
-                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while (current) {
-                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;console.log("element " + current.data + " data")
-                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;current = current.next;
-                      <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
-                      <br>&emsp;&emsp;&emsp;&emsp;}
-                      <br>}
-                    </code>
-                  </p>
-                </div>
-                <p class="card-text">This function just simply prints out the contents of a list to console.</p>
-
                 <hr class="my-4">
 
-                <p class="card-text">In this first solution, a list is passed in, and a set is used to add elements to
+                <p class="card-text">In this first solution, first a list is passed in, and then a set is created to add
+                  elements
+                  to
                   and check if the element has already been used. This allows a single pointer run over the linked list
                   to perserve space.</p>
                 <div class="text-left p-3 bg-dark">
@@ -215,8 +200,8 @@
                 <hr class="my-4">
 
                 <p class="card-text">In this second approach, two pointers are used. This eliminates additional space
-                  being taken, but due to the iteration within iteration it takes more time, dropping the Big O from N
-                  to N<sup>2</sup>.</p>
+                  being taken, but due to the iteration within iteration it takes more time, dropping the Big O
+                  efficiency from N to N<sup>2</sup>.</p>
                 <div class="p-3 text-left bg-dark">
                   <p class="card-text">
                     <code class="text-light">function removeDuplicates2(testList) {
@@ -252,16 +237,17 @@
                 <div class="form-group m-2">
                   <p class="card-text" id="test2_output"></p>
                 </div>
+
               </div>
             </div>
           </div>
+
         </div>
       </div>
+
     </div>
 
   </div>
-  </div>
-
 
 </body>
 
