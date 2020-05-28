@@ -1,0 +1,1 @@
+three_in_one_01 doesn't actively reject a string when attempting to create a stack

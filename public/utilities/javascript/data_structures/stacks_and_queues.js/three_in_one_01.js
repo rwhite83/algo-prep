@@ -4,7 +4,7 @@ class FixedMultiStack {
     constructor(stackSize) {
         this.numberOfStacks = 3;
         this.stackCapacity = stackSize;
-        this.values = [stackSize * this.numberOfStacks];
+        this.values = new Array(stackSize * this.numberOfStacks);
         this.sizes = new Array(this.numberOfStacks).fill(0);
     }
 
@@ -156,7 +156,7 @@ function peekStackOne() {
     if (!testMultiStack) {
         alert("Please create a multi stack before attempting to pop.")
     } else {
-        let peekedData = testMultiStack.peek(0);
+        let peekedData = testMultiStack.peek(1);
         if (peekedData) {
             alert("Data '" + peekedData + "' peeked from stack 0");
         }
@@ -167,7 +167,7 @@ function peekStackTwo() {
     if (!testMultiStack) {
         alert("Please create a multi stack before attempting to pop.")
     } else {
-        let peekedData = testMultiStack.peek(0);
+        let peekedData = testMultiStack.peek(2);
         if (peekedData) {
             alert("Data '" + peekedData + "' peeked from stack 0");
         }
