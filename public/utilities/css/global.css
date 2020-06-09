@@ -1,5 +1,11 @@
-.no_text_button {
+.occupied_button {
     background-color: blue;
+    width: 50pt;
+    height: 50pt;
+}
+
+.free_button {
+    background-color:grey;
     width: 50pt;
     height: 50pt;
 }

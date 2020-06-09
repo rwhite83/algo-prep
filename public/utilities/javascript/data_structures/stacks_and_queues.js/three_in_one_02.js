@@ -47,7 +47,7 @@ class MultiStack {
 
     push(stackNum, value) {
         if (this.allStacksAreFull()) {
-            alert("A push was attempted on Stack " + stackNum + " but it is full.");
+            alert("A push was attempted on Stack " + stackNum + " but all stacks are full.");
         } else {
             let stack = this.info[stackNum];
             if (stack.isFull) {
@@ -144,12 +144,18 @@ function updateVisualStack() {
     for (let i = 0; i < testMultiStack.info.length; i++) {
         let newParagraph = document.createElement('p');
         newParagraph.classList.add("card-text")
-        newParagraph.innerText = "Stack " + (i+1) + " (Capacity: " + testMultiStack.info[i].capacity + "):";
+        newParagraph.innerText = "Stack " + i + " (Capacity: " + testMultiStack.info[i].capacity + "):";
         visualDiv.append(newParagraph)
         for (let j = 0; j < testMultiStack.info[i].size; j++) {
             let newButton = document.createElement('button')
             newButton.disabled = true
-            newButton.classList.add("no_text_button")
+            newButton.classList.add("occupied_button")
+            visualDiv.append(newButton)
+        }
+        for (let j = 0; j < testMultiStack.info[i].capacity - testMultiStack.info[i].size; j++) {
+            let newButton = document.createElement('button')
+            newButton.disabled = true
+            newButton.classList.add("free_button")
             visualDiv.append(newButton)
         }
         let new_line = document.createElement("br")
@@ -173,100 +179,43 @@ function stackSizeSelector() {
         defaultCountInt = parseInt(defaultCount);
     }
 
-    testMultiStack = new MultiStack(stackCount, defaultCount);
+    testMultiStack = new MultiStack(stackCountInt, defaultCountInt);
     updateVisualStack();
     alert("" + stackCount + " stacks with default capacity of " + defaultCount + " created.")
 }
 
-function pushStackZero() {
+function demoPush() {
     if (!testMultiStack) {
         alert("Please create a multi stack before attempting to push.")
     } else {
-        let pushableData = prompt("Please enter text to push as data.");
-        testMultiStack.push(0, pushableData);
+        let pushString = document.getElementById('push_string').value
+        let pushStackNum = document.getElementById('push_stack_num').value
+        testMultiStack.push(pushStackNum, pushString);
+        updateVisualStack();
+        alert('"' + pushString + '"' + " added to stack " + pushStackNum)
     }
 }
 
-function pushStackOne() {
-    if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to push.")
-    } else {
-        let pushableData = prompt("Please enter text to push as data.");
-        testMultiStack.push(1, pushableData);
-    }
-}
-
-function pushStackTwo() {
-    if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to push.")
-    } else {
-        let pushableData = prompt("Please enter text to push as data.");
-        testMultiStack.push(2, pushableData);
-    }
-}
-
-function popStackZero() {
+function demoPop() {
     if (!testMultiStack) {
         alert("Please create a multi stack before attempting to pop.")
     } else {
-        let poppedData = testMultiStack.pop(0);
+        let popStackNum = document.getElementById('pop_stack_num').value
+        let poppedData = testMultiStack.pop(popStackNum);
         if (poppedData) {
-            alert("Data '" + poppedData + "' popped from stack 0");
+            alert("Data '" + poppedData + "' popped from stack " + popStackNum);
+            updateVisualStack();
         }
     }
 }
 
-function popStackOne() {
+function demoPeek() {
     if (!testMultiStack) {
         alert("Please create a multi stack before attempting to pop.")
     } else {
-        let poppedData = testMultiStack.pop(1);
-        if (poppedData) {
-            alert("Data '" + poppedData + "' popped from stack 1");
-        }
-    }
-}
-
-function popStackTwo() {
-    if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to pop.")
-    } else {
-        let poppedData = testMultiStack.pop(2);
-        if (poppedData) {
-            alert("Data '" + poppedData + "' popped from stack 2");
-        }
-    }
-}
-
-function peekStackZero() {
-    if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to pop.")
-    } else {
-        let peekedData = testMultiStack.peek(0);
-        if (peekedData) {
-            alert("Data '" + peekedData + "' peeked from stack 0");
-        }
-    }
-}
-
-function peekStackOne() {
-    if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to pop.")
-    } else {
-        let peekedData = testMultiStack.peek(1);
-        if (peekedData) {
-            alert("Data '" + peekedData + "' peeked from stack 0");
-        }
-    }
-}
-
-function peekStackTwo() {
-    if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to pop.")
-    } else {
-        let peekedData = testMultiStack.peek(2);
-        if (peekedData) {
-            alert("Data '" + peekedData + "' peeked from stack 0");
-        }
+        // let peekedData = testMultiStack.peek(0);
+        // if (peekedData) {
+        //     alert("Data '" + peekedData + "' peeked from stack 0");
+        // }
     }
 }

@@ -89,31 +89,27 @@
               <button onClick="stackSizeSelector()" class="btn btn-primary m-2">Create New Stack</button>
             </div>
             <br><br>
+
             <div id="visual_stack"></div>
-            <!-- <div class="form-inline justify-content-center pt-4">
-                  <button onClick="pushStackZero()" class="btn btn-primary m-2">Push Stack Zero</button>
-                  <button onClick="pushStackOne()" class="btn btn-primary m-2">Push Stack One</button>
-                  <button onClick="pushStackTwo()" class="btn btn-primary m-2">Push Stack Two</button>
-                </div>
-                <div class="form-inline justify-content-center pt-4">
-                  <button onClick="popStackZero()" class="btn btn-primary m-2">Pop Stack Zero</button>
-                  <button onClick="popStackOne()" class="btn btn-primary m-2">Pop Stack One</button>
-                  <button onClick="popStackTwo()" class="btn btn-primary m-2">Pop Stack Two</button>
-                </div>
-                <div class="form-inline justify-content-center pt-4">
-                  <button onClick="peekStackZero()" class="btn btn-primary m-2">Peek Stack Zero</button>
-                  <button onClick="peekStackOne()" class="btn btn-primary m-2">Peek Stack One</button>
-                  <button onClick="peekStackTwo()" class="btn btn-primary m-2">Peek Stack Two</button>
-                </div> -->
-            <div class="form-inline justify-content-center pt-4" id="unique_characters_form_2">
+            
+            <div class="form-inline justify-content-center pt-4">
               <div class="form-group mx-sm-3 m-2">
-                <input type="text" class="form-control" id="test2_input" placeholder="Try a string here">
+                <input type="text" class="form-control" id="push_string" placeholder="String data to push">
+                <input type="number" class="form-control" id="push_stack_num" placeholder=0 min=0>
               </div>
-              <button onClick="uniqueCharacters2Test()" class="btn btn-primary m-2">Check if Unique
-                Characters</button>
-              <div class="form-group m-2">
-                <p class="card-text" id="test2_output">T/F</p>
+              <button onClick="demoPush()" class="btn btn-primary m-2">Push</button>
+            </div>
+            <div class="form-inline justify-content-center pt-4">
+              <div class="form-group mx-sm-3 m-2">
+                <input type="number" class="form-control" id="pop_stack_num" placeholder=0 min=0>
               </div>
+              <button onClick="demoPop()" class="btn btn-primary m-2">Pop</button>
+            </div>
+            <div class="form-inline justify-content-center pt-4">
+              <div class="form-group mx-sm-3 m-2">
+                <input type="number" class="form-control" id="peek_stack_num" placeholder=0 min=0>
+              </div>
+              <button onClick="demoPeek()" class="btn btn-primary m-2">Peek</button>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\utilities\\javascript\\data_structures\\stacks_and_queues.js\\three_in_one_01.js"
+            "program": "${workspaceFolder}\\utilities\\javascript\\data_structures\\stacks_and_queues.js\\three_in_one_02.js"
         }
     ]
 }
