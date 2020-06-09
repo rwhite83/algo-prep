@@ -1,5 +1,8 @@
+// class to handle values and functions for individual stacks
 class StackInfo {
 
+    // initializes a stack, links to parent multistack, 
+    // and initializes values
     constructor(multistack, start, capacity) {
         this.size = 0;
         this.parent = multistack;
@@ -7,6 +10,8 @@ class StackInfo {
         this.capacity = capacity;
     }
 
+    // checks if an index is within stack capacity 
+    // by comparing given index to virtual index
     isWithinStackCapacity(index) {
         if (index < 0 || index >= this.parent.values.length) {
             return false
@@ -16,10 +21,12 @@ class StackInfo {
         return this.start <= virtualIndex && virtualIndex < end;
     }
 
+    // returns the index of last capacity space of the stack
     lastCapacityIndex() {
         return this.parent.adjustIndex(this.start + this.capacity - 1);
     }
 
+    // returns the index of the last occupied element of the stack
     lastElementIndex() {
         return this.parent.adjustIndex(this.start + this.size - 1);
     }
@@ -36,6 +43,7 @@ class StackInfo {
 
 class MultiStack {
 
+    // initializes a multistack, creating an array of stackinfo objects
     constructor(numberOfStacks, defaultSize) {
         this.values = new Array(numberOfStacks * defaultSize);
         this.info = new Array(numberOfStacks);
@@ -45,6 +53,8 @@ class MultiStack {
         }
     }
 
+    // checks if a push is possible on a given stack, then adds if possible
+    // rejects if all stacks are full, otherwise expands designate stack if necessary
     push(stackNum, value) {
         if (this.allStacksAreFull()) {
             alert("A push was attempted on Stack " + stackNum + " but all stacks are full.");
@@ -58,6 +68,9 @@ class MultiStack {
         }
     }
 
+    // checks if stack is empty, alerts if so
+    // otherwise gets last element index for designated stack,
+    // sets element to zero, and returns value
     pop(stackNum) {
         let stack = this.info[stackNum];
         if (stack.isEmpty()) {
@@ -70,6 +83,9 @@ class MultiStack {
         return value;
     }
 
+    // checks if stack is empty, alerts if so
+    // otherwise gets last element index for designated 
+    // stack, and returns value
     peek(stackNum) {
         let stack = this.info[stackNum];
 
@@ -80,6 +96,8 @@ class MultiStack {
         return this.values[stack.lastElementIndex()]
     }
 
+    // if required, this function expands a stack into another
+    // iterates through and adjusts all other values
     shift(stackNum) {
         console.log("shifting stack " + stackNum);
         let stack = this.info[stackNum];
@@ -101,11 +119,13 @@ class MultiStack {
         stack.capacity--;
     }
 
+    // expands a stack if necessary
     expand(stackNum) {
         this.shift((stackNum + 1) % this.info.length);
         this.info[stackNum].capacity++
     }
 
+    // returns number of elements in virtual stack
     numberOfElements() {
         let running_size = 0;
         for (let sd in this.info) {
@@ -118,6 +138,7 @@ class MultiStack {
         return this.numberOfElements() == this.values.length;
     }
 
+    // adjusts index relative to length of array
     adjustIndex(index) {
         const max = this.values.length;
         return ((index % max) + max) % max;
@@ -211,11 +232,13 @@ function demoPop() {
 
 function demoPeek() {
     if (!testMultiStack) {
-        alert("Please create a multi stack before attempting to pop.")
+        alert("Please create a multi stack before attempting to peek.")
     } else {
-        // let peekedData = testMultiStack.peek(0);
-        // if (peekedData) {
-        //     alert("Data '" + peekedData + "' peeked from stack 0");
-        // }
+        let peekStackNum = document.getElementById('peek_stack_num').value
+        let peekedData = testMultiStack.peek(peekStackNum);
+        if (peekedData) {
+            alert("Data '" + peekedData + "' peeked from stack " + peekStackNum);
+            updateVisualStack();
+        }
     }
 }

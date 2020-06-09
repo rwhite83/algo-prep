@@ -76,14 +76,168 @@
             <p class="card-text"></p>
             <hr class="my-4">
 
-            <p class="card-text"></p>
+            <p class="card-text">This is the first part of the solution. StackInfo is a secondary class to keep track of
+              various values and functions for individual stacks within the multi stack. This makes the code more easily
+              readable, as well as serving to break code into smaller pieces, and make it more modular for reusability.
+            </p>
             <div class="p-3 text-left bg-dark">
               <p class="card-text">
-                <code class="text-light">
-                    </code>
+                <code class="text-light">class StackInfo {
+                  <br><br>&emsp;&emsp;&emsp;&emsp;// initializes a stack, links to parent multistack, 
+                  <br>&emsp;&emsp;&emsp;&emsp;// and initializes values
+                  <br>&emsp;&emsp;&emsp;&emsp;constructor(multistack, start, capacity) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.size = 0;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.parent = multistack;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.start = start;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.capacity = capacity;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br><br>&emsp;&emsp;&emsp;&emsp;// checks if an index is within stack capacity 
+                  <br>&emsp;&emsp;&emsp;&emsp;// by comparing given index to virtual index
+                  <br>&emsp;&emsp;&emsp;&emsp;isWithinStackCapacity(index) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (index < 0 || index >= this.parent.values.length) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return false
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;const virtualIndex = index < this.start ? index + this.parent.values.length : index
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;const end = this.start + this.capacity;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.start <= virtualIndex && virtualIndex < end;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br><br>&emsp;&emsp;&emsp;&emsp;// returns the index of last capacity space of the stack
+                  <br>&emsp;&emsp;&emsp;&emsp;lastCapacityIndex() {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.parent.adjustIndex(this.start + this.capacity - 1);
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;// returns the index of the last occupied element of the stack
+                  <br><br>&emsp;&emsp;&emsp;&emsp;lastElementIndex() {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.parent.adjustIndex(this.start + this.size - 1);
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br><br>&emsp;&emsp;&emsp;&emsp;isFull() {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.size == this.capacity;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br><br>&emsp;&emsp;&emsp;&emsp;isEmpty() {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.size == 0;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>}
+                </code>
               </p>
             </div>
+            <hr class="my-4">
 
+            <p class="card-text">This is the main class which uses the above class. It creates a multistack on demand,
+              and then provides pushing, popping, and peeking services. I will reiterate that this was a very
+              challenging question. In this case I learned by studying the solution, not generating it myself.</p>
+            <div class="p-3 text-left bg-dark">
+              <p class="card-text">
+                <code class="text-light">class MultiStack {
+                  <br><br>&emsp;&emsp;&emsp;&emsp;// initializes a multistack, creating an array of stackinfo objects
+                  <br>&emsp;&emsp;&emsp;&emsp;constructor(numberOfStacks, defaultSize) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values = new Array(numberOfStacks * defaultSize);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.info = new Array(numberOfStacks);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;for (let i = 0; i < numberOfStacks; i++) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.info[i] = new StackInfo(this, defaultSize * i, defaultSize)
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// checks if a push is possible on a given stack, then adds if possible
+                  <br>&emsp;&emsp;&emsp;&emsp;// rejects if all stacks are full, otherwise expands designate stack if necessary
+                  <br>&emsp;&emsp;&emsp;&emsp;push(stackNum, value) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (this.allStacksAreFull()) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;alert("A push was attempted on Stack " + stackNum + " but all stacks are full.");
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;} else {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let stack = this.info[stackNum];
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (stack.isFull) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.expand(stackNum);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stack.size++;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values[stack.lastElementIndex()] = value;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// checks if stack is empty, alerts if so
+                  <br>&emsp;&emsp;&emsp;&emsp;// otherwise gets last element index for designated stack,
+                  <br>&emsp;&emsp;&emsp;&emsp;// sets element to zero, and returns value
+                  <br>&emsp;&emsp;&emsp;&emsp;pop(stackNum) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let stack = this.info[stackNum];
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (stack.isEmpty()) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;alert("A pop was attempted on Stack " + stackNum + " but it is empty.");
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let value = this.values[stack.lastElementIndex()];
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values[stack.lastElementIndex()] = 0;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stack.size--;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return value;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// checks if stack is empty, alerts if so
+                  <br>&emsp;&emsp;&emsp;&emsp;// otherwise gets last element index for designated 
+                  <br>&emsp;&emsp;&emsp;&emsp;// stack, and returns value
+                  <br>&emsp;&emsp;&emsp;&emsp;peek(stackNum) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let stack = this.info[stackNum];
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (stack.isEmpty()) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;alert("A peek was attempted on Stack " + stackNum + " but it is empty.");
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.values[stack.lastElementIndex()]
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// if required, this function expands a stack into another
+                  <br>&emsp;&emsp;&emsp;&emsp;// iterates through and adjusts all other values
+                  <br>&emsp;&emsp;&emsp;&emsp;shift(stackNum) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;console.log("shifting stack " + stackNum);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let stack = this.info[stackNum];
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;if (stack.size > stack.capacity) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let nextStack = (stackNum + 1) % this.info.length;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.shift(nextStack);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stack.capacity++;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let index = stack.lastCapacityIndex();
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;while (stack.isWithinStackCapacity(index)) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values[index] = this.values[this.previousIndex(index)];
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;index = this.previousIndex(index);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.values[stack.start] = 0;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stack.start = this.nextIndex(stack.start);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;stack.capacity--;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// expands a stack if necessary
+                  <br>&emsp;&emsp;&emsp;&emsp;expand(stackNum) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.shift((stackNum + 1) % this.info.length);
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;this.info[stackNum].capacity++
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// returns number of elements in virtual stack
+                  <br>&emsp;&emsp;&emsp;&emsp;numberOfElements() {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;let running_size = 0;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;for (let sd in this.info) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;running_size += sd.size;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return running_size;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;allStacksAreFull() {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.numberOfElements() == this.values.length;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;// adjusts index relative to length of array
+                  <br>&emsp;&emsp;&emsp;&emsp;adjustIndex(index) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;const max = this.values.length;
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return ((index % max) + max) % max;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;nextIndex(index) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.adjustIndex(index + 1);
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;previousIndex(index) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.adjustIndex(index - 1);
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>
+                  <br>&emsp;&emsp;&emsp;&emsp;getOneStackCount(stack) {
+                  <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return this.info[stack].size;
+                  <br>&emsp;&emsp;&emsp;&emsp;}
+                  <br>}
+                </code>
+              </p>
+            </div>
 
             <div class="form-inline justify-content-center pt-4">
               <button onClick="stackSizeSelector()" class="btn btn-primary m-2">Create New Stack</button>
@@ -91,23 +245,23 @@
             <br><br>
 
             <div id="visual_stack"></div>
-            
+
             <div class="form-inline justify-content-center pt-4">
               <div class="form-group mx-sm-3 m-2">
                 <input type="text" class="form-control" id="push_string" placeholder="String data to push">
-                <input type="number" class="form-control" id="push_stack_num" placeholder=0 min=0>
+                <input type="number" class="form-control" id="push_stack_num" value=0 min=0>
               </div>
               <button onClick="demoPush()" class="btn btn-primary m-2">Push</button>
             </div>
             <div class="form-inline justify-content-center pt-4">
               <div class="form-group mx-sm-3 m-2">
-                <input type="number" class="form-control" id="pop_stack_num" placeholder=0 min=0>
+                <input type="number" class="form-control" id="pop_stack_num" value=0 min=0>
               </div>
               <button onClick="demoPop()" class="btn btn-primary m-2">Pop</button>
             </div>
             <div class="form-inline justify-content-center pt-4">
               <div class="form-group mx-sm-3 m-2">
-                <input type="number" class="form-control" id="peek_stack_num" placeholder=0 min=0>
+                <input type="number" class="form-control" id="peek_stack_num" value=0 min=0>
               </div>
               <button onClick="demoPeek()" class="btn btn-primary m-2">Peek</button>
             </div>
