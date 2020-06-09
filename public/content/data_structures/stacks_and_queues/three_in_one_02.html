@@ -7,6 +7,7 @@
   <title>Welcome to Ross' Algo Prep</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/utilities/css/global.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -40,52 +41,83 @@
         </div>
       </div>
 
-          <div class="collapse multi-collapse" id="hints">
-            <div class="card shadow p-3 m-3 mb-4 bg-white rounded">
-              <div class="card-body">
-                <h2 class="card-title">Hints</h2>
-                <hr class="my-4">
-                <p class="card-text">This one is definitely more challenging between the 155 line Java solution in the
-                  book, and my coming in not even understanding the problem that a circular buffer solves, let alone how
-                  to implement one! I am finding this to be a very valuable approach to studying this book. Focusing on
-                  deeply understanding one a day, and skipping to the next section every day, is really allowing me the
-                  time to do dives into things that come up like circular buffers.</p>
-                <p class="card-text">A problem that can arise with a queue, is that elements are constantly being added
-                  and consumed, which requires some sort of updating. One way to deal with this is to use something like
-                  a linked list, where each element can carry a reference to its neighbours in the queues regardless of
-                  where they are in memory. Another way is to handle the issue, if you are using a fixed size array,
-                  then even if you are within your bounds, you have to update every element's position in the array
-                  every time you pop or push, which isn't very efficient. Alternatively you can use a circular queue :)
-                </p>
-                <p class="card-text">It's pretty simple once you understand it. Instead of shifting every element's
-                  position in the array when you pop or push, you instead just update what shall be considered the head
-                  down the array, and allow the tail to overflow into the space at the beginning of the array, which has
-                  now been made possible by the 'head' moving down the array. In the image below, consider 'read' the
-                  head, and 'write' the tail.</p>
-                <img src="/utilities/images/circular_buffer_animation.gif" class="img-thumbnail" style="max-width: 30em;"
-                  alt="Circular Buffer Animation not found">
-              </div>
-            </div>
+      <div class="collapse multi-collapse" id="hints">
+        <div class="card shadow p-3 m-3 mb-4 bg-white rounded">
+          <div class="card-body">
+            <h2 class="card-title">Hints</h2>
+            <hr class="my-4">
+            <p class="card-text">This one is definitely more challenging between the 155 line Java solution in the
+              book, and my coming in not even understanding the problem that a circular buffer solves, let alone how
+              to implement one! I am finding this to be a very valuable approach to studying this book. Focusing on
+              deeply understanding one a day, and skipping to the next section every day, is really allowing me the
+              time to do dives into things that come up like circular buffers.</p>
+            <p class="card-text">A problem that can arise with a queue, is that elements are constantly being added
+              and consumed, which requires some sort of updating. One way to deal with this is to use something like
+              a linked list, where each element can carry a reference to its neighbours in the queues regardless of
+              where they are in memory. Another way is to handle the issue, if you are using a fixed size array,
+              then even if you are within your bounds, you have to update every element's position in the array
+              every time you pop or push, which isn't very efficient. Alternatively you can use a circular queue :)
+            </p>
+            <p class="card-text">It's pretty simple once you understand it. Instead of shifting every element's
+              position in the array when you pop or push, you instead just update what shall be considered the head
+              down the array, and allow the tail to overflow into the space at the beginning of the array, which has
+              now been made possible by the 'head' moving down the array. In the image below, consider 'read' the
+              head, and 'write' the tail.</p>
+            <img src="/utilities/images/circular_buffer_animation.gif" class="img-thumbnail" style="max-width: 30em;"
+              alt="Circular Buffer Animation not found">
           </div>
+        </div>
+      </div>
 
-          <div class="collapse multi-collapse" id="solution">
-            <div class="card shadow p-3 m-3 bg-white rounded">
-              <div class="card-body">
-                <h2 class="card-title">Solutions</h2>
-                <p class="card-text"></p>
-                <hr class="my-4">
+      <div class="collapse multi-collapse" id="solution">
+        <div class="card shadow p-3 m-3 bg-white rounded">
+          <div class="card-body">
+            <h2 class="card-title">Solutions</h2>
+            <p class="card-text"></p>
+            <hr class="my-4">
 
-                <p class="card-text"></p>
-                <div class="p-3 text-left bg-dark">
-                  <p class="card-text">
-                    <code class="text-light">
+            <p class="card-text"></p>
+            <div class="p-3 text-left bg-dark">
+              <p class="card-text">
+                <code class="text-light">
                     </code>
-                  </p>
-                </div>
+              </p>
+            </div>
 
+
+            <div class="form-inline justify-content-center pt-4">
+              <button onClick="stackSizeSelector()" class="btn btn-primary m-2">Create New Stack</button>
+            </div>
+            <br><br>
+            <div id="visual_stack"></div>
+            <!-- <div class="form-inline justify-content-center pt-4">
+                  <button onClick="pushStackZero()" class="btn btn-primary m-2">Push Stack Zero</button>
+                  <button onClick="pushStackOne()" class="btn btn-primary m-2">Push Stack One</button>
+                  <button onClick="pushStackTwo()" class="btn btn-primary m-2">Push Stack Two</button>
+                </div>
+                <div class="form-inline justify-content-center pt-4">
+                  <button onClick="popStackZero()" class="btn btn-primary m-2">Pop Stack Zero</button>
+                  <button onClick="popStackOne()" class="btn btn-primary m-2">Pop Stack One</button>
+                  <button onClick="popStackTwo()" class="btn btn-primary m-2">Pop Stack Two</button>
+                </div>
+                <div class="form-inline justify-content-center pt-4">
+                  <button onClick="peekStackZero()" class="btn btn-primary m-2">Peek Stack Zero</button>
+                  <button onClick="peekStackOne()" class="btn btn-primary m-2">Peek Stack One</button>
+                  <button onClick="peekStackTwo()" class="btn btn-primary m-2">Peek Stack Two</button>
+                </div> -->
+            <div class="form-inline justify-content-center pt-4" id="unique_characters_form_2">
+              <div class="form-group mx-sm-3 m-2">
+                <input type="text" class="form-control" id="test2_input" placeholder="Try a string here">
+              </div>
+              <button onClick="uniqueCharacters2Test()" class="btn btn-primary m-2">Check if Unique
+                Characters</button>
+              <div class="form-group m-2">
+                <p class="card-text" id="test2_output">T/F</p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
     </div>
 

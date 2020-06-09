@@ -150,3 +150,10 @@ function demoTwoFilter() {
     let generated_text = demo_list_two.toString();
     target_div.innerText = generated_text;
 }
+
+const subtract = (a,b) => a - b;
+
+module.exports = {
+    simpleMessage: "Hello World",
+    minus: subtract
+}

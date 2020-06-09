@@ -49,3 +49,10 @@ console.log("uniqueCharacters1 'wubbalubbadubdub' false test \nArray test should
 console.log("uniqueCharacters1 'wublife' true test \nArray test should be true: it is " + uniqueCharacters1("wublife"));
 console.log("uniqueCharacters2 'wubbalubbadubdub' false test \nSet test should be false: it is " + uniqueCharacters2("wubbalubbadubdub"));
 console.log("uniqueCharacters2 'wublife' true test \nSet test should be true: it is " + uniqueCharacters2("wublife"));
+
+const subtract = (a,b) => a - b;
+
+module.exports = {
+    simpleMessage: "Hello World",
+    minus: subtract
+}

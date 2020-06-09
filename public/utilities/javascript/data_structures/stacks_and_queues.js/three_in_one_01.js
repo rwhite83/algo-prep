@@ -68,16 +68,15 @@ class FixedMultiStack {
 }
 
 let testMultiStack;
-console.log(testMultiStack)
 
 function stackSizeSelector() {
-    let stackCount = parseInt(prompt("Please enter required stack size"));
+    let stackCount = prompt("Please enter required stack size");
     let stackCountInt = parseInt(stackCount);
-    testMultiStack = new FixedMultiStack(stackCount);
     while (!Number.isInteger(stackCountInt)) {
         stackCount = prompt("An integer value is required.  Please try again.")
         stackCountInt = parseInt(stackCount);
     }
+    testMultiStack = new FixedMultiStack(stackCount);
     alert("Three stacks of " + stackCount + " created.")
 }
 
